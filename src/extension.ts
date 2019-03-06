@@ -5,7 +5,7 @@ import { commands, ExtensionContext, window } from 'vscode';
 import promptActivation from './controls/promptActivation';
 import promptSearch from './controls/promptSearch';
 
-import { registerContext, unregisterContext } from './context/state';
+import { registerContext, unregisterContext } from './context';
 import { getAuthToken, clearAuthToken } from './context/auth';
 
 // https://code.visualstudio.com/api/references/vscode-api

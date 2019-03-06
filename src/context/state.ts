@@ -1,25 +1,11 @@
-import { ExtensionContext } from 'vscode';
-
-let appContext: ExtensionContext;
-
-export function registerContext(context: ExtensionContext) {
-    appContext = context;
-}
-
-export function unregisterContext() {
-    // clean up somehow?...
-}
-
-export function getContext(): ExtensionContext {
-    return appContext;
-}
+import { getContext } from './index';
 
 export function setState(key: string, value: any): Thenable<void> {
-    if (!appContext) {
+    if (!getContext()) {
         throw new Error('App context not registered.');
     }
 
-    return appContext.globalState.update(key, value);
+    return getContext().globalState.update(key, value);
 }
 
 export function unsetState(key: string): Thenable<void> {
@@ -27,9 +13,9 @@ export function unsetState(key: string): Thenable<void> {
 }
 
 export function getState<T>(key: string): T | undefined {
-    if (!appContext) {
+    if (!getContext()) {
         throw new Error('App context not registered.');
     }
 
-    return appContext.globalState.get<T>(key);
+    return getContext().globalState.get<T>(key);
 }
