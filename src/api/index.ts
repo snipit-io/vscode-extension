@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import * as https from 'https';
 
 import config from '../config';
-import { getAuthToken } from '../context';
+import { getAuthToken } from '../context/auth';
 
 /*
 axios.get(url, { headers, httpsAgent, etc })

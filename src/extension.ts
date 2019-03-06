@@ -1,11 +1,13 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import { commands, ExtensionContext } from 'vscode';
+import { commands, ExtensionContext, window } from 'vscode';
 
 import promptActivation from './controls/promptActivation';
 import promptSearch from './controls/promptSearch';
 
-import { registerContext, unregisterContext, getAuthToken } from './context';
+import { registerContext, unregisterContext } from './context/state';
+import { getAuthToken, clearAuthToken } from './context/auth';
+
 // https://code.visualstudio.com/api/references/vscode-api
 
 
@@ -14,17 +16,21 @@ import { registerContext, unregisterContext, getAuthToken } from './context';
 export function activate(context: ExtensionContext) {
     registerContext(context);
 
-    const commandHandler = () => {
+    context.subscriptions.push(commands.registerCommand('extension.snipit', () => {
         // The code you place here will be executed every time your command is executed
         if (!getAuthToken()) {
             promptActivation();
         } else {
             promptSearch();
         }
-    };
+    }));
 
-    const registeredCommand = commands.registerCommand('extension.snipit', commandHandler);
-    context.subscriptions.push(registeredCommand);
+    context.subscriptions.push(commands.registerCommand('extension.snipitLogout', () => {
+        clearAuthToken()
+            .then(() => {
+               window.showInformationMessage('You have successfully cleared your Snipit.io credentials.');
+            });
+    }));
 }
 
 // this method is called when your extension is deactivated

@@ -22,18 +22,14 @@ export function setState(key: string, value: any): Thenable<void> {
     return appContext.globalState.update(key, value);
 }
 
+export function unsetState(key: string): Thenable<void> {
+    return setState(key, undefined);
+}
+
 export function getState<T>(key: string): T | undefined {
     if (!appContext) {
         throw new Error('App context not registered.');
     }
 
     return appContext.globalState.get<T>(key);
-}
-
-export function getAuthToken(): string | undefined {
-    return getState<string>('auth-token');
-}
-
-export function setAuthToken(token: string): Thenable<void> {
-    return setState('auth-token', token);
 }

@@ -10,7 +10,8 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.snipit"
+        "onCommand:extension.snipit",
+        "onCommand:extension.snipitLogout"
     ],
     "main": "./out/extension.js",
     "contributes": {
@@ -18,6 +19,10 @@
             {
                 "command": "extension.snipit",
                 "title": "Search Snipit.io"
+            },
+            {
+                "command": "extension.snipitLogout",
+                "title": "Logout from Snipit.io"
             }
         ]
     },

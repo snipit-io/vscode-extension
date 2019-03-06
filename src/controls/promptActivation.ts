@@ -1,7 +1,7 @@
 import { window } from 'vscode';
 
 import promptSearch from './promptSearch';
-import { setAuthToken } from '../context';
+import { setAuthToken } from '../context/auth';
 
 
 export default async function promptActivation() {
