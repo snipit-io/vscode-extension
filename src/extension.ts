@@ -19,9 +19,12 @@ export function activate(context: ExtensionContext) {
     context.subscriptions.push(commands.registerCommand('extension.snipit', () => {
         // The code you place here will be executed every time your command is executed
         if (!getAuthToken()) {
-            promptActivation();
+            promptActivation()
+                .then(() => promptSearch())
+                .catch((error) => window.showErrorMessage(error.message));
         } else {
-            promptSearch();
+            promptSearch()
+                .catch((error) => window.showErrorMessage(error.message));
         }
     }));
 

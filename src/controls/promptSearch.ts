@@ -4,18 +4,18 @@ import { doSearch } from '../api';
 import quickPick from './quickPick';
 
 
-export default async function promptSearch() {
+export default async function promptSearch(): Promise<void> {
     const query = await window.showInputBox({
         prompt: 'search for snippets...',
         validateInput: (text: string): string | undefined => (!text ? 'must include search terms' : undefined),
     });
     
     if (query) {
-        doSearch(query)
+        return doSearch(query)
             .then((snippets) => {
                 quickPick(snippets);
-            }).catch(error => window.showErrorMessage(error));
+            });
     } else {
-        window.showErrorMessage('No search term was provided.');
+        throw new Error('No search term was provided.');
     }
 }

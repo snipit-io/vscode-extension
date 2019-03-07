@@ -1,10 +1,10 @@
 import { window } from 'vscode';
 
-import promptSearch from './promptSearch';
-import { setAuthToken } from '../context/auth';
+import { setAuthToken, clearAuthToken } from '../context/auth';
+import { pingAuthServer } from '../api';
 
 
-export default async function promptActivation() {
+export default async function promptActivation(): Promise<boolean> {
     const token = await window.showInputBox({
         placeHolder: 'Paste your activation key here',
         prompt: 'Log in to Snipit.io and navigate to https://snipit.io/activate/vscode to get your key.',
@@ -14,9 +14,17 @@ export default async function promptActivation() {
     });
     
     if (token) {
-        setAuthToken(token)
-            .then(() => promptSearch());
+        return setAuthToken(token)
+            .then(() => pingAuthServer())
+            .then((isAuth) => {
+                if (!isAuth) {
+                    clearAuthToken();
+                    throw new Error('Activation token is not valid.');
+                } else {
+                    return true;
+                }
+            });
     } else {
-        window.showErrorMessage('No activation token was provided.');
+        throw new Error('No activation token was provided.');
     }
 }
