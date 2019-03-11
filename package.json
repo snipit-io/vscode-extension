@@ -1,8 +1,9 @@
 {
-    "name": "snipit",
-    "displayName": "Snipit.io",
-    "description": "",
+    "name": "vscode-extension",
+    "displayName": "Snipit",
+    "description": "Visual Studio Code extension for Snipit.io",
     "version": "0.0.1",
+    "publisher": "snipit",
     "engines": {
         "vscode": "^1.31.0"
     },

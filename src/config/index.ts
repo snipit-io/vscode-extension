@@ -1,5 +1,5 @@
 export default {
     api: {
-        baseUrl: 'https://localhost:3101',
+        baseUrl: 'https://snipit.io',
     }
 };
