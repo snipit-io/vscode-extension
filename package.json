@@ -2,7 +2,7 @@
     "name": "vscode-extension",
     "displayName": "Snipit",
     "description": "Access your Snipit.io library right from the Visual Studio Code editor. Snipit.io is a powerful code snippets manager designed for dev teams and individuals.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "publisher": "snipit",
     "engines": {
         "vscode": "^1.31.0"
