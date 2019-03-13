@@ -16,7 +16,7 @@ import { getAuthToken, clearAuthToken } from './context/auth';
 export function activate(context: ExtensionContext) {
     registerContext(context);
 
-    context.subscriptions.push(commands.registerCommand('extension.snipit', () => {
+    context.subscriptions.push(commands.registerCommand('extension.snipit.Search', () => {
         // The code you place here will be executed every time your command is executed
         if (!getAuthToken()) {
             promptActivation()
@@ -28,7 +28,7 @@ export function activate(context: ExtensionContext) {
         }
     }));
 
-    context.subscriptions.push(commands.registerCommand('extension.snipitLogout', () => {
+    context.subscriptions.push(commands.registerCommand('extension.snipit.Logout', () => {
         clearAuthToken()
             .then(() => {
                window.showInformationMessage('You have successfully cleared your Snipit.io credentials.');

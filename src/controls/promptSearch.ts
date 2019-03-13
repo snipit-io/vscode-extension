@@ -9,7 +9,11 @@ export default async function promptSearch(): Promise<void> {
         prompt: 'search for snippets...',
         validateInput: (text: string): string | undefined => (!text ? 'must include search terms' : undefined),
     });
-    
+
+    if (!window.activeTextEditor) {
+        throw new Error('You need to be in an active editor.');
+    }
+
     if (query) {
         return doSearch(query)
             .then((snippets) => {

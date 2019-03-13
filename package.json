@@ -1,29 +1,45 @@
 {
     "name": "vscode-extension",
     "displayName": "Snipit",
-    "description": "Visual Studio Code extension for Snipit.io",
-    "version": "0.0.1",
+    "description": "Access your Snipit.io library right from the Visual Studio Code editor. Snipit.io is a powerful code snippets manager designed for dev teams and individuals.",
+    "version": "1.0.0",
     "publisher": "snipit",
     "engines": {
         "vscode": "^1.31.0"
     },
     "categories": [
+        "Snippets",
         "Other"
     ],
+    "galleryBanner": {
+        "color": "#FFFFFF",
+        "theme": "light"
+    },
+    "icon": "media/snipit-logo-2-512.png",
+    "homepage": "https://snipit.io",
+    "private": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/snipit-io/vscode-extension"
+    },
+    "bugs": {
+        "url": "https://github.com/snipit-io/vscode-extension/issues",
+        "email": "andrei@snipit.io"
+    },
     "activationEvents": [
-        "onCommand:extension.snipit",
-        "onCommand:extension.snipitLogout"
+        "onCommand:extension.snipit.Search",
+        "onCommand:extension.snipit.Logout"
     ],
     "main": "./out/extension.js",
     "contributes": {
         "commands": [
             {
-                "command": "extension.snipit",
-                "title": "Search Snipit.io"
+                "command": "extension.snipit.Search",
+                "title": "Snipit: Search"
             },
             {
-                "command": "extension.snipitLogout",
-                "title": "Logout from Snipit.io"
+                "command": "extension.ssnipit.Logout",
+                "title": "Snipit: Logout"
             }
         ]
     },
