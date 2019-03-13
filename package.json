@@ -38,7 +38,7 @@
                 "title": "Snipit: Search"
             },
             {
-                "command": "extension.ssnipit.Logout",
+                "command": "extension.snipit.Logout",
                 "title": "Snipit: Logout"
             }
         ]
